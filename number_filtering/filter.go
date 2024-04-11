@@ -26,52 +26,6 @@ func FilterNumbers(nums []int, f func(int) bool) []int {
 	return ret
 }
 
-// Honestly, these FilterX functions shouldn't even exist
-// should be inline in the test cases only
-// But whatever, I will just leave it here
-
-func FilterEven(nums []int) []int {
-	return FilterNumbers(nums, IsEven)
-}
-
-func FilterOdd(nums []int) []int {
-	return FilterNumbers(nums, IsOdd)
-}
-
-func FilterPrime(nums []int) []int {
-	return FilterNumbers(nums, IsPrime)
-}
-
-// What's the point of this? You cannot even have an even prime number
-// except 2
-func FilterOddPrime(nums []int) []int {
-	return FilterNumbers(nums, All(IsOdd, IsPrime))
-}
-
-func FilterEvenMultiplesOfFive(nums []int) []int {
-	return FilterNumbers(nums, All(IsEven, MultipleOf(5)))
-}
-
-// I shouldn't name it FilterOddMultiplesOfThreeGreaterThanTen
-// I will just call it FilterStorySix lol
-func FilterStorySix(nums []int) []int {
-	// I can do this as well
-	// return FilterNumbers(nums, All(IsOdd, MultipleOf(3), func(n int) bool {
-	// 	return n > 1
-	// }))
-	return FilterNumbers(nums, All(IsOdd, MultipleOf(3), GreaterThan(10)))
-}
-
-// I only implement the first case here
-func FilterStorySeven(nums []int) []int {
-	return FilterNumbers(nums, All(IsOdd, MultipleOf(3), GreaterThan(5)))
-}
-
-// I only implement the first case here
-func FilterStoryEight(nums []int) []int {
-	return FilterNumbers(nums, Any(IsPrime, GreaterThan(15), MultipleOf(5)))
-}
-
 /*
  * I don't think this is what the expectations wanted,
  * but I will keep it.
@@ -87,6 +41,8 @@ func FilterStoryEight(nums []int) []int {
 
 // Varadic functions
 // Can take any amount of parameters, as long as the type matches
+
+// You can also call these kind of functions as Higher-order functions
 
 // int version
 // func All(fs ...func(int) bool) func(int) bool {
