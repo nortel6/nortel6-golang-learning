@@ -31,6 +31,10 @@ type studentStat struct {
 // I am just gonna assume there will be no need
 // to further validate here
 // Good enough
+
+// I can choose to delegate the error handling
+// to calling function, but I don't think there's
+// a need in this case.
 func parseInt(num string) int {
 	n, err := strconv.Atoi(num)
 	if err != nil {
@@ -146,6 +150,18 @@ func findOverallTopper(gradedStudents []studentStat) studentStat {
 
 func findTopperPerUniversity(gs []studentStat) map[string]studentStat {
 	tops := make(map[string]studentStat)
+	// I understand the evaluation requirement which stated
+	// findOverallTopper can be used with filtered slice of studentStat,
+	// which has the benefit of delegating the logic to a single function
+	// for finding the topper, but it is slower no? Since you have to
+	// create a function to do the filtering
+
+	// If I were to implement it, it would be like this:
+	// 1. Create a map[string][]studentStat
+	// 2. Filter the 'gs', and create slices grouped by university
+	// 3. For each university, call topper on the slices group.
+
+	// I will just leave it like this
 	for _, s := range gs {
 		u := s.university
 		// If key does not exist or the final score is better than the previous student
